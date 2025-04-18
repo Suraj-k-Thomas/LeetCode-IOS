@@ -9,28 +9,51 @@ import XCTest
 @testable import LeetCode
 
 final class LeetCodeTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    
+    func test_FITS_returnsEmptyArray() {
+        
+        let nums = [Int]()
+        let target = 9
+        let result = FindIndexOfTargrtSum(nums: nums, target: target)
+        
+        XCTAssertEqual(result, [])
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func test_FITS_returnsResult() {
+        
+        let nums = [2,7,11,15]
+        let target = 9
+        let result = FindIndexOfTargrtSum(nums: nums, target: target)
+        
+        XCTAssertEqual(result, [0,1])
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    func test_FITS_returnsResultonInvalidInput() {
+        
+        let nums = [1,2,11,15]
+        let target = 9
+        let result = FindIndexOfTargrtSum(nums: nums, target: target)
+        
+        XCTAssertEqual(result, [])
     }
+}
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+func FindIndexOfTargrtSum (nums:[Int] ,target :Int )-> [Int]{
+    
+    var seen:[Int:Int] = [:]
+    print("nums = \(nums)")
+    
+    for(index,num) in nums.enumerated(){
+        
+        let complement = target - num
+        
+        if let complementIndex = seen[complement]{
+            
+            return [complementIndex, index]
         }
+        seen[num] = index
+        print(seen)
     }
-
+    return []
 }
