@@ -39,21 +39,3 @@ final class LeetCodeTests: XCTestCase {
     }
 }
 
-func FindIndexOfTargrtSum (nums:[Int] ,target :Int )-> [Int]{
-    
-    var seen:[Int:Int] = [:]
-    print("nums = \(nums)")
-    
-    for(index,num) in nums.enumerated(){
-        
-        let complement = target - num
-        
-        if let complementIndex = seen[complement]{
-            
-            return [complementIndex, index]
-        }
-        seen[num] = index
-        print(seen)
-    }
-    return []
-}
