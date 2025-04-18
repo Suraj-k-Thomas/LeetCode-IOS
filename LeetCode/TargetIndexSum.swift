@@ -35,22 +35,40 @@ import Foundation
  */
 
 
+//
+//func FindIndexOfTargrtSum (nums:[Int] ,target :Int )-> [Int]{
+//    
+//    var seen:[Int:Int] = [:]
+//    print("nums = \(nums)")
+//    
+//    for(index,num) in nums.enumerated(){
+//        
+//        let complement = target - num
+//        
+//        if let complementIndex = seen[complement]{
+//            
+//            return [complementIndex, index]
+//        }
+//        seen[num] = index
+//        print(seen)
+//    }
+//    return []
+//}
+
 
 func FindIndexOfTargrtSum (nums:[Int] ,target :Int )-> [Int]{
     
-    var seen:[Int:Int] = [:]
-    print("nums = \(nums)")
-    
-    for(index,num) in nums.enumerated(){
-        
-        let complement = target - num
-        
-        if let complementIndex = seen[complement]{
-            
+    var seen : [Int:Int] = [:]
+    return nums.enumerated().compactMap {
+        (index , value) in
+        let complement = target - value
+        if let complementIndex = seen[complement] {
             return [complementIndex, index]
         }
-        seen[num] = index
-        print(seen)
-    }
-    return []
+        seen[value] = index
+        return nil
+        
+    }.first ?? []
 }
+
+
