@@ -36,3 +36,29 @@ import Foundation
  return max length
  
  */
+
+func lengthOfLongestSubstring(_ s: String) -> Int {
+    
+    var maxLength = 0
+    var substring = ""
+    
+    for char in s {
+        
+        if substring.contains(char) {
+            
+        if let index = substring.firstIndex(of: char) {
+                
+            substring.removeSubrange(...index)
+            
+            }
+        }
+        
+        substring.append(char)
+        maxLength = max(maxLength, substring.count)
+        
+        
+    }
+        
+    
+    return maxLength
+}

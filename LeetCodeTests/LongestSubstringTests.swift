@@ -6,7 +6,7 @@
 //
 
 import XCTest
-//@testable import LeetCode
+@testable import LeetCode
 
 final class LongestSubstringTests: XCTestCase {
     
@@ -26,48 +26,6 @@ final class LongestSubstringTests: XCTestCase {
     }
     
 }
-func lengthOfLongestSubstring(_ s: String) -> Int {
-    
-    var maxLength = 0
-    var substring = ""
-    
-    for char in s {
-        
-        if substring.contains(char) {
-            
-        if let index = substring.firstIndex(of: char) {
-                
-            substring.removeSubrange(...index)
-            
-            }
-        }
-        
-        substring.append(char)
-        maxLength = max(maxLength, substring.count)
-        
-        
-    }
-        
-    
-    return maxLength
-}
 
-//func lengthOfLongestSubstring(_ s: String) -> Int {
-//    var maxLength = 0
-//    var currentSubstring = ""
-//
-//    for char in s {
-//        if currentSubstring.contains(char) {
-//            // Remove characters from start up to the repeated char
-//            if let index = currentSubstring.firstIndex(of: char) {
-//                currentSubstring.removeSubrange(...index)
-//            }
-//        }
-//        currentSubstring.append(char)
-//        maxLength = max(maxLength, currentSubstring.count)
-//    }
-//
-//    return maxLength
-//}
 
 
