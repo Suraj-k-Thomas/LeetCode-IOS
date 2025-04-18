@@ -37,5 +37,14 @@ final class LeetCodeTests: XCTestCase {
         
         XCTAssertEqual(result, [])
     }
+    func test_FITS_returnsResultWithCompactMap() {
+        
+        let nums = [2,7,11,15]
+        let target = 9
+        let result = FindIndexOfTargrtSumWithCompactMap(nums: nums, target: target)
+        
+        XCTAssertEqual(result, [0,1])
+    }
+    
 }
 
