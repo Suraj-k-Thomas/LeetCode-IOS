@@ -12,7 +12,7 @@ import Foundation
  Given a string s, find the length of the longest substring without repeating characters.
  
  Example:
- Input: "abcabcbb"
+ Input: "bcaabcbb"
  Output: 3
  Explanation: The answer is "abc", with the length of 3.
  
