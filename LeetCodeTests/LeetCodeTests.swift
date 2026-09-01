@@ -22,11 +22,11 @@ final class LeetCodeTests: XCTestCase {
     
     func test_FITS_returnsResult() {
         
-        let nums = [2,7,11,15]
+        let nums = [2,9,11,0]
         let target = 9
         let result = FindIndexOfTargrtSum(nums: nums, target: target)
         
-        XCTAssertEqual(result, [0,1])
+        XCTAssertEqual(result, [1,3])
     }
     
     func test_FITS_returnsResultonInvalidInput() {

@@ -13,12 +13,12 @@ class ValidParenthesesTests:XCTestCase {
     
     func testInValidBraces(){
         
-        XCTAssertFalse(validBraces("{{}}[{]"))
+        XCTAssertFalse(validBraces("{}{}[{]"))
     }
     
     func testValidBraces(){
         
-        XCTAssertTrue(validBraces("{{}}[]"))
+        XCTAssertTrue(validBraces("{}{}[]"))
     }
 }
 

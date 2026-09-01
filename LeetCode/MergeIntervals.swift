@@ -15,15 +15,35 @@ import Foundation
  [1,3] and [2,6] overlap → merge to [1,6]
  */
 
+
 /**
  solution
  *sort the intervals
  *initialize a result array with the first interval.
  *for each remaining intervals  ,
   compare last[1] < [interval [0]
- if yes overlapp  add to result,
+ if yes overlapp  add overlapped to result,
  else
  add to result
+ */
+
+/*
+ 
+ [1, 4] and [2, 5]
+ ↓       ↓
+ 1 ——— 4
+     2 ——— 5
+
+ → They overlap because 2 <= 4
+
+ 
+ [1, 2] and [2, 5]
+ ↓       ↓
+ 1 ——2
+     2 ——— 5
+
+ → They overlap because 2 <= 2
+
  */
 
 func mergeIntervals(_ intervals:[[Int]])-> [[Int]] {
@@ -56,3 +76,5 @@ func mergeIntervals(_ intervals:[[Int]])-> [[Int]] {
     
     return result
 }
+
+

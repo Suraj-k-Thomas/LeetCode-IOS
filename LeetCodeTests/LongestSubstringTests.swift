@@ -30,6 +30,13 @@ final class LongestSubstringTests: XCTestCase {
         XCTAssertEqual(lengthOfLongestSubstringUsingSet(string), 4)
     }
     
+    func testLongestSubstring() {
+        
+        let string = "bbabcdabcbb"
+        
+        XCTAssertEqual(longestSubstring(string),"abcd")
+    }
+    
 }
 
 

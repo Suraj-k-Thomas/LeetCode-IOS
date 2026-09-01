@@ -7,6 +7,7 @@
 
 import Testing
 import XCTest
+@testable import LeetCode
 
 class GroupAnagramsTest : XCTestCase {
 
@@ -32,7 +33,7 @@ class GroupAnagramsTest : XCTestCase {
    
 
         func testGroupAnagrams_basicCase() {
-            let input = ["eat", "tea", "tan", "ate", "nat", "bat"]
+            let input = ["0", "tea", "tan", "ate", "nat", "bat"]
             let result = groupAnagrams(input)
 
             let expectedGroups: Set<Set<String>> = [
@@ -77,26 +78,6 @@ class GroupAnagramsTest : XCTestCase {
     
     
     
-    func groupAnagrams(_ strs: [String]) -> [[String]] {
-        var dict = [String: [String]]()
-
-        for str in strs {
-            let key = String(str.sorted())  // Sort characters to use as key
-            if var existingArray = dict[key] {
-                existingArray.append(str)
-                dict[key] = existingArray
-            } else {
-                dict[key] = [str]
-            }
-        }
-
-        // Optional: Print the dictionary for debugging
-        for (key, value) in dict {
-            print("\(key): \(value)")
-        }
-
-        return Array(dict.values)
-    }
     
 }
 

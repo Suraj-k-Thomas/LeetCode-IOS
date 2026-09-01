@@ -12,11 +12,51 @@ import Foundation
  Given a string s, find the length of the longest substring without repeating characters.
  
  Example:
- Input: "bcaabcbb"
+ Input: "acbabcbab"
  Output: 3
  Explanation: The answer is "abc", with the length of 3.
  
  */
+
+
+
+func findlongestsubstring (_ s : String) -> String {
+    
+    guard !s.isEmpty else{
+        return s
+    }
+    var left = s.startIndex
+    var right = left
+    var beststart = left
+    var bestcount = 0
+    var charset = Set<Character>()
+    
+    while right < s.endIndex {
+        
+        var char = s[right]
+        
+        if !charset.contains(char){
+            charset.insert(char)
+            right = s.index(after: right)
+            var count = s.distance(from: left, to: right)
+            if  count > bestcount {
+                bestcount = count
+                beststart = left
+            }
+        }else{
+            charset.remove(char)
+            left = s.index(after: left)
+            
+        }
+        
+    }
+    
+    let bestend = s.index(beststart, offsetBy: bestcount)
+    let longest = String(s[beststart..<bestend])
+    
+    
+    return longest
+}
 
 /*
  solution 1
@@ -103,14 +143,125 @@ func lengthOfLongestSubstringUsingSet(_ s: String) -> Int {
         if !Charset.contains(char){
             Charset.insert(char)
             maxLength = max(maxLength, s.distance(from: leftIndex, to: rightIndex) + 1)
+            print(Charset , maxLength)
             rightIndex = s.index(after: rightIndex)
         }else {
-            
             Charset.remove(s[leftIndex])
             leftIndex = s.index(after: leftIndex)
         }
     }
-    
+    print("charset : \(Charset)")
     return maxLength
     
+}
+
+/*
+ 
+// */
+//func lengthOfLongestSubstringUsingSet(_ s: String) -> Int {
+//    
+//    var maxlength = 0
+//    var currentlength = 0
+//    var leftindex = s.startIndex
+//    var rightindex = leftindex
+//    var Characters : Set<Character> = []
+//    
+//    while rightindex < s.endIndex {
+//        
+//        let char = s[rightindex]
+//        
+//        if !Characters.contains(char){
+//            Characters.insert(char)
+//            
+//            
+//            maxlength = max(maxlength, Characters.count)
+//           // print(maxlength,char)
+//            rightindex = s.index(after: rightindex)
+//        }else {
+//            //print(maxlength,currentlength)
+//            Characters.remove(s[leftindex])
+//            leftindex = s.index(after: leftindex)
+//        }
+//        
+//    }
+//    
+//   // print(Characters)
+//
+//    return maxlength
+//}
+
+
+func longestSubstringWithoutRepeating(_ s: String) -> String {
+    var window: Set<Character> = []
+    var left = s.startIndex
+    var right = left
+
+    var currLen = 0
+    var bestLen = 0
+    var bestStart = s.startIndex
+
+    while right < s.endIndex {
+        let ch = s[right]
+        if !window.contains(ch) {
+            window.insert(ch)
+            currLen += 1
+
+            if currLen > bestLen {
+                bestLen = currLen
+                bestStart = left
+            }
+            right = s.index(after: right)          // expand
+        } else {
+            window.remove(s[left])                  // shrink by 1
+            left = s.index(after: left)
+            currLen -= 1
+        }
+    }
+
+    let bestEnd = s.index(bestStart, offsetBy: bestLen)
+    return String(s[bestStart..<bestEnd])
+}
+
+
+func longestSubstring(_ s: String) -> String {
+    
+    /**
+     s = "abcdabcdab"
+     */
+    
+    var leftindex = s.startIndex
+    var rightindex = leftindex
+    var beststart = leftindex
+    var bestend = s.endIndex
+    var bestcount = 0
+    var currentcount = 0
+    var charset = Set<Character>()
+    
+    while rightindex < s.endIndex {
+        
+        let char = s[rightindex]
+        if !charset.contains(char){
+            charset.insert(char)
+            currentcount += 1
+            if currentcount > bestcount{
+                bestcount = currentcount
+                beststart = leftindex
+            }
+            print("char is \(char)\n currentcount is \(currentcount)\n beststart is \(beststart)\n bestcount is \(bestcount)")
+            rightindex = s.index(after: rightindex)
+            
+            
+        }else{
+            charset.remove(s[leftindex])
+            currentcount -= 1
+            leftindex = s.index(after: leftindex)
+        }
+        
+    }
+    
+    bestend = s.index(beststart, offsetBy: bestcount)
+    let longeststring = String(s[beststart..<bestend])
+    
+    
+    return longeststring
 }
